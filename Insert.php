@@ -25,24 +25,127 @@
             <input type="email" class="form-control mb-2" name="email" required><br><br>
 
             Country:<br>
-            <select id="country" name="country" required onchange="populateStates()">
-                <option value="" disabled selected>Select Country</option>
-                <option value="India">India</option>
-                <option value="Canada">Canada</option>
-                <option value="UK">UK</option>
-                <option value="Australia">Australia</option>
-                <option value="USA">USA</option>
-            </select><br><br>
+            <html xmlns="http://www.w3.org/1999/xhtml">
 
-            State:<br>
-            <select id="state" name="state" required onchange="populateCities()">
-                <option value="" disabled selected>Select State</option>
-            </select><br><br>
+<script type="text/javascript">
+ 
+// State lists
+var states = new Array();
+states['India'] = new Array('Bihar','Delhi','Gujarat');
+states['Canada'] = new Array('Alberta','British Columbia','Ontario');
+states['Philippines'] = new Array('Manila','Albay','Cam-Sur');
+states['United States'] = new Array('California','Florida','New York');
+ 
+ 
+// City lists
+var cities = new Array();
 
-            City:<br>
-            <select id="city" name="city" required >
-                <option value="" disabled selected>Select City</option>
-            </select><br><br>
+cities['India'] = new Array();
+cities['India']['Bihar']          = new Array('Baisi','Bhojpur');
+cities['India']['Delhi'] = new Array('Rohini','South Delhi');
+cities['India']['Gujarat']          = new Array('Ahmedabad','Dhrol','Rājkot');
+
+ 
+cities['Canada'] = new Array();
+cities['Canada']['Alberta']          = new Array('Edmonton','Calgary');
+cities['Canada']['British Columbia'] = new Array('Victoria','Vancouver');
+cities['Canada']['Ontario']          = new Array('Toronto','Hamilton');
+ 
+cities['Philippines'] = new Array();
+cities['Philippines']['Manila'] = new Array('Paranaque','Quezon City');
+cities['Philippines']['Albay']       = new Array('Legazpi City','Camalig');
+cities['Philippines']['Cam-Sur']         = new Array('Naga','ehem');
+ 
+cities['United States'] = new Array();
+cities['United States']['California'] = new Array('Los Angeles','San Francisco');
+cities['United States']['Florida']    = new Array('Miami','Orlando');
+cities['United States']['New York']   = new Array('Buffalo','new York');
+ 
+ 
+function setStates() {
+  cntrySel = document.getElementById('country');
+  stateList = states[cntrySel.value];
+  changeSelect('state', stateList, stateList);
+  setCities();
+}
+ 
+function setCities() {
+  cntrySel = document.getElementById('country');
+  stateSel = document.getElementById('state');
+  cityList = cities[cntrySel.value][stateSel.value];
+  changeSelect('city', cityList, cityList);
+}
+ 
+function changeSelect(fieldID, newOptions, newValues) {
+  selectField = document.getElementById(fieldID);
+  selectField.options.length = 0;
+  for (i=0; i<newOptions.length; i++) {
+    selectField.options[selectField.length] = new Option(newOptions[i], newValues[i]);
+  }
+}
+ 
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+ 
+addLoadEvent(function() {
+  setStates();
+});
+</script>
+ 
+</head>
+ 
+<body>
+ 
+     <form>
+        <table>
+        <tr>
+        <td style="text-align: left;">Country:</td>
+        <td style="text-align: left;">
+            <select name="country" id="country" onchange="setStates();">
+            <option value="India">India</option>
+            <option value="Philippines">Philippines</option>
+              <option value="Canada">Canada</option>
+              <option value="United States">United States</option>
+            </select>
+        </td>
+        </tr><tr>
+        <td style="text-align: left;">State:</td>
+        <td style="text-align: left;">
+            <select name="state" id="state" onchange="setCities();">
+              <option value="">Please select a Country</option>
+            </select>
+        </td>
+        </tr><tr>
+        <td style="text-align: left;">City:</td>
+        <td style="text-align: left;">
+            <select name="city"  id="city">
+              <option value="">Please select a Country</option>
+            </select>
+        </td>
+        </tr>
+        </table>
+    </form>
+ 
+ 
+ 
+</body>
+</html>
+ 
+ 
+
+ 
+            
 
             Address:<br>
             <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
