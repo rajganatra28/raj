@@ -31,7 +31,8 @@
  
 // State lists
 var states = new Array();
-states['India'] = new Array('Bihar','Delhi','Gujarat');
+states['India'] = new Array('U.P','Bihar','Delhi','Gujarat','Kerala','Kasmir');
+states['pakistan'] = new Array('Punjap','Baluchistan','Sind');     
 states['Canada'] = new Array('Alberta','British Columbia','Ontario');
 states['Philippines'] = new Array('Manila','Albay','Cam-Sur');
 states['United States'] = new Array('California','Florida','New York');
@@ -41,11 +42,18 @@ states['United States'] = new Array('California','Florida','New York');
 var cities = new Array();
 
 cities['India'] = new Array();
+cities['India']['U.P']          = new Array('Dg','Kanpur');
 cities['India']['Bihar']          = new Array('Baisi','Bhojpur');
-cities['India']['Delhi'] = new Array('Rohini','South Delhi');
-cities['India']['Gujarat']          = new Array('Ahmedabad','Dhrol','Rājkot');
+cities['India']['Delhi'] = new Array( 'Rohini','South Delhi');
+cities['India']['Gujarat']          = new Array('Ahmedabad','Rajkot');
+cities['India']['Keral'] = new Array('Tri','Pal');
+cities['India']['Kasmir']          = new Array('Jammu','Manali');
 
- 
+cities['pakistan'] = new Array();
+cities['pakistan']['Punjap']          = new Array('Lahore','Faisalabad');
+cities['pakistan']['Baluchistan']     = new Array('Quetta','Nasirabad');
+cities['pakistan'][ 'Sind']          = new Array('Krachi','Mirpurkhas');
+
 cities['Canada'] = new Array();
 cities['Canada']['Alberta']          = new Array('Edmonton','Calgary');
 cities['Canada']['British Columbia'] = new Array('Victoria','Vancouver');
@@ -114,7 +122,9 @@ addLoadEvent(function() {
         <td style="text-align: left;">
             <select name="country" id="country" onchange="setStates();">
             <option value="India">India</option>
-            <option value="Philippines">Philippines</option>
+            <option 
+<option value="akistan">pakistan</option>
+            <option                 value="Philippines">Philippines</option>
               <option value="Canada">Canada</option>
               <option value="United States">United States</option>
             </select>
