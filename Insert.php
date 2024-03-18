@@ -123,7 +123,7 @@ addLoadEvent(function() {
             <select name="country" id="country" onchange="setStates();">
             <option value="India">India</option>
             <option 
-<option value="akistan">pakistan</option>
+<option value="pakistan">pakistan</option>
             <option                 value="Philippines">Philippines</option>
               <option value="Canada">Canada</option>
               <option value="United States">United States</option>
