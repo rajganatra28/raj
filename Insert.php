@@ -11,18 +11,18 @@
 <body>
     <h2>Registration Form</h2>
     <div class="container mt-2">
-        <form action="index.php" method="POST">
+        <form action="register.php" method="POST">
             First Name:</br>
-            <input type="text" class="form-control mb-2 " name="firstName" required><br><br>
+            <input type="text" class="form-control mb-2 " name="txtfnm" required><br><br>
 
             Last Name:<br>
-            <input type="text" class="form-control mb-2 " name="lastName" required><br><br>
+            <input type="text" class="form-control mb-2 " name="txtlnm" required><br><br>
 
             Contact Number:<br>
-            <input type="text"class="form-control mb-2" name="contactNumber" required><br><br>
+            <input type="text"class="form-control mb-2" name="txtcno" required><br><br>
 
             Email:<br>
-            <input type="email" class="form-control mb-2" name="email" required><br><br>
+            <input type="email" class="form-control mb-2" name="txtemail" required><br><br>
 
             Country:<br>
             <html xmlns="http://www.w3.org/1999/xhtml">
@@ -109,18 +109,12 @@ function addLoadEvent(func) {
 addLoadEvent(function() {
   setStates();
 });
-</script>
- 
-</head>
- 
-<body>
- 
-     <form>
-        <table>
+</script> 
+ <table>
         <tr>
         <td style="text-align: left;">Country:</td>
         <td style="text-align: left;">
-            <select name="country" id="country" onchange="setStates();">
+            <select name="txtcountry" id="country" onchange="setStates();">
             <option value="India">India</option>
             <option 
 <option value="pakistan">pakistan</option>
@@ -132,33 +126,21 @@ addLoadEvent(function() {
         </tr><tr>
         <td style="text-align: left;">State:</td>
         <td style="text-align: left;">
-            <select name="state" id="state" onchange="setCities();">
+            <select name="txtstate" id="state" onchange="setCities();">
               <option value="">Please select a Country</option>
             </select>
         </td>
         </tr><tr>
         <td style="text-align: left;">City:</td>
         <td style="text-align: left;">
-            <select name="city"  id="city">
+            <select name="txtcity"  id="city">
               <option value="">Please select a Country</option>
             </select>
         </td>
         </tr>
         </table>
-    </form>
- 
- 
- 
-</body>
-</html>
- 
- 
-
- 
-            
-
-            Address:<br>
-            <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+Address:<br>
+            <textarea id="address" name="txtadres" rows="4" cols="50" required></textarea><br><br>
 
             Gender:<br>
             <input type="radio" id="male" name="gender" value="male" required>
@@ -178,20 +160,19 @@ addLoadEvent(function() {
 </html>
 
 <?php
-    $con = mysqli_connect("localhost","root","","admin");
-    if(isset($_POST['firstName']))
+    $con = mysqli_connect("localhost","root","","dbharry");
+    if(isset($_POST['txtfnm']))
     {
-
-        $fnm =$_POST['firstName'];
-        $lnm =$_POST['lastName'];
-        $mob=$_POST['contactNumber'];
-        $email =$_POST['email'];
-        $cou =$_POST['country'];
-        $state =$_POST['state'];
-        $city=$_POST['city'];
-        $address=$_POST['address'];
-        $gender=$_POST['gender'];
-        $sql ="INSERT INTO `registration`(`fname`, `lname`, `cnumber`, `email`, `country`, `state`, `city`, `Address`, `gender`) VALUES ('$fnm','$lnm','$mob','$email','$cou','$state','$city','$address','$gender')";
-        $res =mysqli_query($con,$sql);
+       $fnm=$_POST['txtfnm'];
+		 	 $lnm=$_POST['txtlnm'];
+			 $cno=$_POST['txtcno'];
+			 $email=$_POST['txtemail'];
+			 $country=$_POST['txtcountry'];
+			 $state=$_POST['txtstate'];
+			 $city=$_POST['txtcity'];
+		 	 $adress=$_POST['txtadres'];
+			 $gender=$_POST['gender'];
+       $sql="INSERT INTO `phptrip`(`firstname`,`lastname`,`connectno`,`email`,`select country`,`select state`,`select city`,`address`,`gender`) VALUE ('$fnm','$lnm','$cno','$email','$country','$state','$city','$adress','$gender')";
+			 $result=mysqli_query($con,$sql);
     }
 ?>
